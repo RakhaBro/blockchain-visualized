@@ -7,6 +7,7 @@ import BlockchainPage from './pages/BlockchainPage'
 import DistributedPage from './pages/DistributedPage'
 import TokensPage from './pages/TokensPage'
 import KeysPage from './pages/KeysPage'
+import SupplyPage from './pages/SupplyPage'
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
         <Route path="/distributed" element={<DistributedPage />} />
         <Route path="/tokens" element={<TokensPage />} />
         <Route path="/keys" element={<KeysPage />} />
+        <Route path="/supply" element={<SupplyPage />} />
         <Route path="*" element={<Navigate to="/hash" replace />} />
       </Routes>
       <NextStep />

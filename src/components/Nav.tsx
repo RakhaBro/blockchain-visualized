@@ -7,6 +7,7 @@ const links = [
   { to: '/distributed', label: 'Distributed' },
   { to: '/tokens', label: 'Tokens' },
   { to: '/keys', label: 'Public / Private Keys' },
+  { to: '/supply', label: '21 Juta' },
 ]
 
 export default function Nav() {

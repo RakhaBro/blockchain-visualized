@@ -8,6 +8,7 @@ const STAGES = [
   { to: '/distributed', label: 'Distributed' },
   { to: '/tokens', label: 'Tokens' },
   { to: '/keys', label: 'Keys' },
+  { to: '/supply', label: '21 Juta Bitcoin' },
 ]
 
 export default function NextStep() {
