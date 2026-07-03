@@ -8,27 +8,28 @@ export default function KeysPage() {
   const pub = derivePublicKey(priv)
 
   // --- Signatures ---
-  const [message, setMessage] = useState('This is a signed message')
+  const [message, setMessage] = useState('Halo, ini pesan yang saya tanda tangani')
   const signature = sign(message, priv)
 
   // --- Verify (transaction) ---
-  const [vMessage, setVMessage] = useState('This is a signed message')
+  const [vMessage, setVMessage] = useState('Halo, ini pesan yang saya tanda tangani')
   const [vSig, setVSig] = useState('')
   const [vPub, setVPub] = useState('')
   const verified = vSig && vPub ? verify(vMessage, vSig, vPub) : null
 
   return (
     <div className="page">
-      <span className="eyebrow">Digital Signatures</span>
+      <span className="eyebrow">Tanda Tangan Digital</span>
       <h1>
-        <span className="grad">Public / Private</span> Keys
+        <span className="grad">Kunci</span> Rahasia &amp; Publik
       </h1>
       <p className="intro">
-        Kepemilikan koin dijamin oleh pasangan kunci <b>secp256k1</b> (ECDSA).
-        <b> Private key</b> menandatangani pesan; siapa pun bisa memverifikasi
-        tanda tangan itu dengan <b>public key</b>-nya &mdash; tanpa pernah
-        melihat private key. Beginilah hanya pemilik yang bisa membelanjakan
-        dananya.
+        Tiap orang punya sepasang kunci: satu <b>rahasia</b> yang disimpan
+        sendiri, dan satu <b>publik</b> yang boleh dibagikan ke siapa saja.
+        Kunci rahasia dipakai membubuhkan "tanda tangan" pada sebuah pesan, dan
+        orang lain bisa mengecek keasliannya lewat kunci publik &mdash; tanpa
+        pernah tahu kunci rahasianya. Inilah cara membuktikan hanya pemilik sah
+        yang boleh memakai uangnya.
       </p>
 
       {/* Keys */}
@@ -56,9 +57,9 @@ export default function KeysPage() {
 
       {/* Signatures */}
       <div className="card">
-        <h2 style={{ marginTop: 0 }}>Signatures</h2>
+        <h2 style={{ marginTop: 0 }}>Tanda Tangan</h2>
         <p className="intro" style={{ marginBottom: '0.75rem' }}>
-          Tanda tangani sebuah pesan dengan private key di atas.
+          Buat tanda tangan untuk sebuah pesan memakai kunci rahasia di atas.
         </p>
         <Field label="Message">
           <textarea
@@ -79,7 +80,7 @@ export default function KeysPage() {
             setVPub(pub)
           }}
         >
-          Kirim ke Verify &darr;
+          Kirim ke Cek Keaslian &darr;
         </button>
       </div>
 
@@ -89,11 +90,12 @@ export default function KeysPage() {
           'card ' + (verified === null ? '' : verified ? 'valid' : 'invalid')
         }
       >
-        <h2 style={{ marginTop: 0 }}>Verify</h2>
+        <h2 style={{ marginTop: 0 }}>Cek Keaslian</h2>
         <p className="intro" style={{ marginBottom: '0.75rem' }}>
-          Siapa pun dapat memverifikasi bahwa pesan ini ditandatangani oleh
-          pemilik public key ini &mdash; tanpa private key. Ubah salah satu
-          field dan tanda tangan menjadi tidak sah.
+          Siapa pun bisa memastikan pesan ini benar-benar ditandatangani si
+          pemilik kunci &mdash; cukup pakai kunci publiknya, tanpa perlu kunci
+          rahasia. Ubah salah satu isian, dan tanda tangannya langsung dianggap
+          palsu.
         </p>
         <Field label="Message">
           <textarea
@@ -122,7 +124,7 @@ export default function KeysPage() {
         <div>
           Status:{' '}
           {verified === null ? (
-            <span className="status">— (isi signature &amp; public key)</span>
+            <span className="status">— (isi tanda tangan &amp; kunci publik)</span>
           ) : verified ? (
             <span className="status ok">VALID ✓</span>
           ) : (

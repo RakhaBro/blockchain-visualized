@@ -83,15 +83,16 @@ export default function TokensPage() {
 
   return (
     <div className="page">
-      <span className="eyebrow">Value Transfer</span>
+      <span className="eyebrow">Mencatat Uang Digital</span>
       <h1>
-        <span className="grad">Tokens</span> &amp; Transactions
+        <span className="grad">Koin</span> &amp; Transaksi
       </h1>
       <p className="intro">
-        Alih-alih data bebas, setiap blok kini berisi kumpulan{' '}
-        <b>transaksi</b> &mdash; berapa banyak koin berpindah dari siapa ke
-        siapa. Blok tetap dirangkai lewat hash, jadi seluruh riwayat transaksi
-        ikut terkunci dan tak bisa diubah diam-diam.
+        Sekarang tiap blok tidak berisi tulisan bebas, melainkan daftar{' '}
+        <b>transaksi</b>: siapa mengirim berapa koin ke siapa. Karena blok tetap
+        saling terkunci, seluruh catatan "siapa punya berapa" ikut terkunci dan
+        tak bisa diubah diam-diam. Beginilah mata uang kripto mencatat
+        kepemilikan uang.
       </p>
 
       {blocks.map((b, i) => (

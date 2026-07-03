@@ -7,15 +7,16 @@ export default function HashPage() {
 
   return (
     <div className="page">
-      <span className="eyebrow">Cryptographic Fingerprint</span>
+      <span className="eyebrow">Sidik Jari Digital</span>
       <h1>
-        <span className="grad">SHA256</span> Hash
+        <span className="grad">Hash</span>: Kode Unik
       </h1>
       <p className="intro">
-        Sebuah fungsi hash mengubah data apa pun menjadi "sidik jari" dengan
-        panjang tetap. Ubah teks di bawah dan perhatikan hash-nya berubah total
-        walau hanya satu karakter yang diubah &mdash; namun input yang sama
-        selalu menghasilkan hash yang sama.
+        Bayangkan mesin yang mengubah tulisan apa pun &mdash; sepatah kata
+        sampai satu buku &mdash; menjadi satu kode acak sepanjang tetap, semacam
+        "sidik jari" digital (orang sering menyebutnya proses enkripsi). Ganti
+        satu huruf saja, kodenya langsung berubah total. Tapi teks yang sama
+        selalu memberi kode yang sama. Coba ketik di bawah.
       </p>
 
       <div className="card">

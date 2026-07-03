@@ -21,15 +21,16 @@ export default function BlockPage() {
 
   return (
     <div className="page">
-      <span className="eyebrow">Proof of Work</span>
+      <span className="eyebrow">Menyegel Sebuah Blok</span>
       <h1>
-        Anatomy of a <span className="grad">Block</span>
+        Bagian dari <span className="grad">Blok</span>
       </h1>
       <p className="intro">
-        Sebuah "blok" dianggap sah bila hash-nya diawali sejumlah nol
-        (mis. <code>0000</code>). Karena hash tak bisa diprediksi, satu-satunya
-        cara adalah mencoba-coba nilai <b>Nonce</b> sampai ketemu &mdash; itulah
-        <b> proof of work</b>. Tekan <b>Mine</b> untuk melakukannya otomatis.
+        Sebuah blok baru dianggap sah kalau kode uniknya kebetulan diawali
+        beberapa angka nol. Karena kode ini mustahil ditebak, komputer harus
+        coba-coba mengganti satu angka acak (di sini disebut <b>Nonce</b>)
+        berulang kali sampai ketemu. Kerja keras coba-coba inilah yang bikin
+        blok sulit dipalsukan. Tekan <b>Mine</b> dan biarkan komputer mencarinya.
       </p>
 
       <div className={'block ' + (valid ? 'valid' : 'invalid')}>

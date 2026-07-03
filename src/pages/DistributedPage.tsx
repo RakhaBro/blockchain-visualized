@@ -27,15 +27,16 @@ export default function DistributedPage() {
 
   return (
     <div className="page">
-      <span className="eyebrow">Peer to Peer</span>
+      <span className="eyebrow">Banyak Salinan, Satu Kebenaran</span>
       <h1>
-        <span className="grad">Distributed</span> Ledger
+        Catatan yang <span className="grad">Tersebar</span>
       </h1>
       <p className="intro">
-        Pada jaringan sungguhan, banyak <b>peer</b> menyimpan salinan rantai
-        yang sama. Selama semua identik dan hijau, jaringan sepakat. Coba ubah
-        data pada salah satu peer &mdash; rantainya menyimpang dari yang lain,
-        sehingga kecurangan mudah terdeteksi.
+        Catatan ini tidak disimpan di satu tempat, tapi disalin ke banyak
+        komputer (tiap komputer disebut <b>peer</b>) yang semuanya memegang
+        versi sama. Kalau satu komputer dicurangi, salinannya jadi berbeda dari
+        yang lain dan langsung ketahuan. Untuk menipu, seseorang harus mengubah
+        mayoritas komputer sekaligus &mdash; nyaris mustahil.
       </p>
 
       <div className="peers">

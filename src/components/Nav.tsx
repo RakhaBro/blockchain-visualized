@@ -16,17 +16,19 @@ export default function Nav() {
         <span className="logo" />
         <span className="brand-text">Blockchain Demo</span>
       </NavLink>
-      {links.map((l) => (
-        <NavLink
-          key={l.to}
-          to={l.to}
-          className={({ isActive }) =>
-            'nav-link' + (isActive ? ' active' : '')
-          }
-        >
-          {l.label}
-        </NavLink>
-      ))}
+      <div className="nav-links">
+        {links.map((l) => (
+          <NavLink
+            key={l.to}
+            to={l.to}
+            className={({ isActive }) =>
+              'nav-link' + (isActive ? ' active' : '')
+            }
+          >
+            {l.label}
+          </NavLink>
+        ))}
+      </div>
     </nav>
   )
 }

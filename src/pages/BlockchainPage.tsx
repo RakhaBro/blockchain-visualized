@@ -22,16 +22,16 @@ export default function BlockchainPage() {
 
   return (
     <div className="page">
-      <span className="eyebrow">Immutable Ledger</span>
+      <span className="eyebrow">Rantai yang Saling Mengunci</span>
       <h1>
-        The <span className="grad">Blockchain</span>
+        <span className="grad">Rantai</span> Blok
       </h1>
       <p className="intro">
-        Setiap blok menyimpan hash blok sebelumnya di field <b>Prev</b>,
-        merangkainya menjadi rantai. Ubah data pada satu blok: hash-nya berubah,
-        sehingga blok itu <i>dan semua blok setelahnya</i> menjadi tidak sah
-        (merah). Untuk memperbaikinya, blok-blok tersebut harus di-<b>Mine</b>{' '}
-        ulang.
+        Tiap blok ikut menyimpan kode unik blok sebelumnya (kolom <b>Prev</b>),
+        seperti mata rantai yang saling mengait. Kalau seseorang diam-diam
+        mengubah isi satu blok, kodenya berubah dan sambungan ke blok-blok
+        berikutnya langsung putus &mdash; semuanya jadi merah. Jadi memalsukan
+        satu blok berarti harus mengerjakan ulang semua blok sesudahnya.
       </p>
 
       <div className="chain">

@@ -1,5 +1,6 @@
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Nav from './components/Nav'
+import NextStep from './components/NextStep'
 import HashPage from './pages/HashPage'
 import BlockPage from './pages/BlockPage'
 import BlockchainPage from './pages/BlockchainPage'
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/keys" element={<KeysPage />} />
         <Route path="*" element={<Navigate to="/hash" replace />} />
       </Routes>
+      <NextStep />
     </HashRouter>
   )
 }
