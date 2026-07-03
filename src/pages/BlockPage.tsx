@@ -25,13 +25,25 @@ export default function BlockPage() {
       <h1>
         Sebuah <span className="grad">Block</span>
       </h1>
-      <p className="intro">
-        Sebuah blok baru dianggap sah kalau kode uniknya kebetulan diawali
-        beberapa angka nol. Karena kode ini mustahil ditebak, komputer harus
-        coba-coba mengganti satu angka acak (di sini disebut <b>Nonce</b>)
-        berulang kali sampai ketemu. Kerja keras coba-coba inilah yang bikin
-        blok sulit dipalsukan. Tekan <b>Mine</b> dan biarkan komputer mencarinya.
-      </p>
+      <div className="intro">
+        <p>
+          Setiap block menampung dua hal: sebuah <b>Nonce</b> (angka sekali
+          pakai) dan <b>Data</b> (isi apa pun yang ingin disimpan). "Menambang"
+          (mining) artinya komputer harus menyelesaikan sebuah puzzle.
+        </p>
+        <p>
+          Apa puzzle-nya? Begitu Data ditulis ke dalam block, supaya block itu
+          dianggap <b>valid</b> oleh sistem, komputer harus terus mencoba Nonce
+          acak sampai menemukan satu Nonce yang &mdash; kalau digabung dengan
+          Data lalu di-hash &mdash; menghasilkan kode hash yang diawali beberapa
+          angka nol.
+        </p>
+        <p>
+          Mencari Nonce yang pas butuh ribuan percobaan, dan kerja keras itulah
+          yang bikin block sah dan sulit dipalsukan. Ubah Data lalu tekan{' '}
+          <b>Mine</b> untuk melihat komputer mencari Nonce-nya.
+        </p>
+      </div>
 
       <div className={'block ' + (valid ? 'valid' : 'invalid')}>
         <div className="block__header">

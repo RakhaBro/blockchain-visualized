@@ -87,13 +87,21 @@ export default function TokensPage() {
       <h1>
         <span className="grad">Koin</span> &amp; Transaksi
       </h1>
-      <p className="intro">
-        Sekarang tiap blok tidak berisi tulisan bebas, melainkan daftar{' '}
-        <b>transaksi</b>: siapa mengirim berapa koin ke siapa. Karena blok tetap
-        saling terkunci, seluruh catatan "siapa punya berapa" ikut terkunci dan
-        tak bisa diubah diam-diam. Beginilah mata uang kripto mencatat
-        kepemilikan uang.
-      </p>
+      <div className="intro">
+        <p>
+          Sampai sini, <b>Data</b> di dalam block masih berupa tulisan bebas.
+          Pada uang digital, Data itu diganti menjadi daftar <b>transaksi</b>:
+          catatan siapa mengirim berapa koin ke siapa. Beberapa transaksi
+          dikumpulkan ke dalam satu block, lalu block itu di-<b>Mine</b> dan
+          dirangkai ke rantai seperti biasa.
+        </p>
+        <p>
+          Karena block tetap saling terkunci lewat hash dan Prev, seluruh riwayat
+          "siapa mengirim ke siapa" ikut terkunci &mdash; tidak ada yang bisa
+          mengubah, menghapus, atau memalsukan transaksi lama tanpa ketahuan.
+          Beginilah mata uang kripto mencatat kepemilikan tanpa perlu bank.
+        </p>
+      </div>
 
       {blocks.map((b, i) => (
         <div className={'block ' + (derived[i].valid ? 'valid' : 'invalid')} key={i}>

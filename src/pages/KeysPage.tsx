@@ -23,14 +23,25 @@ export default function KeysPage() {
       <h1>
         <span className="grad">Kunci</span> Rahasia &amp; Publik
       </h1>
-      <p className="intro">
-        Tiap orang punya sepasang kunci: satu <b>rahasia</b> yang disimpan
-        sendiri, dan satu <b>publik</b> yang boleh dibagikan ke siapa saja.
-        Kunci rahasia dipakai membubuhkan "tanda tangan" pada sebuah pesan, dan
-        orang lain bisa mengecek keasliannya lewat kunci publik &mdash; tanpa
-        pernah tahu kunci rahasianya. Inilah cara membuktikan hanya pemilik sah
-        yang boleh memakai uangnya.
-      </p>
+      <div className="intro">
+        <p>
+          Kalau catatan transaksi terbuka untuk semua orang, bagaimana mencegah
+          orang lain membelanjakan uangmu? Jawabannya: setiap orang punya
+          sepasang kunci &mdash; satu <b>kunci rahasia</b> yang disimpan sendiri,
+          dan satu <b>kunci publik</b> yang boleh dibagikan.
+        </p>
+        <p>
+          Saat mengirim uang, kamu "menandatangani" transaksi itu memakai kunci
+          rahasiamu. Siapa pun lalu bisa memakai kunci publikmu untuk memastikan
+          tanda tangan itu benar-benar darimu &mdash; tanpa pernah bisa menebak
+          kunci rahasianya. Jadi hanya pemilik kunci rahasia yang bisa
+          membelanjakan uang di alamat itu.
+        </p>
+        <p>
+          Coba ubah salah satu isian di bawah dan lihat tanda tangannya langsung
+          dianggap palsu.
+        </p>
+      </div>
 
       {/* Keys */}
       <div className="card valid">

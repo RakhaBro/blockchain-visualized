@@ -244,6 +244,13 @@ body::after {
 .page .intro b {
   color: var(--text);
 }
+/* Penjelasan boleh dipecah jadi beberapa <p> di dalam .intro */
+.intro p {
+  margin: 0 0 0.85rem;
+}
+.intro p:last-child {
+  margin-bottom: 0;
+}
 
 /* =========================================================
    Block / card

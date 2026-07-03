@@ -13,9 +13,11 @@ export default function HashPage() {
       </h1>
       <p className="intro">
         Hash adalah metode enkripsi yang mengubah data apa pun menjadi sebuah
-        kode acak dengan jumlah karakter yang selalu tetap. Ganti satu huruf
-        saja, kodenya langsung berubah total &mdash; tapi data yang sama selalu
-        menghasilkan kode yang sama. Coba ketik di bawah.
+        kode acak dengan jumlah karakter yang selalu tetap. Sifatnya: data yang
+        sama <b>selalu</b> menghasilkan kode yang sama, tapi mengubah satu huruf
+        saja membuat kodenya berubah total dan tak bisa ditebak. Kode inilah yang
+        disebut <b>hash</b>, dan ia jadi fondasi semua tahap berikutnya. Coba
+        ketik apa saja di bawah dan perhatikan hash-nya berubah.
       </p>
 
       <div className="card">

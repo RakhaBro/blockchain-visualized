@@ -31,13 +31,22 @@ export default function DistributedPage() {
       <h1>
         Catatan yang <span className="grad">Tersebar</span>
       </h1>
-      <p className="intro">
-        Catatan ini tidak disimpan di satu tempat, tapi disalin ke banyak
-        komputer (tiap komputer disebut <b>peer</b>) yang semuanya memegang
-        versi sama. Kalau satu komputer dicurangi, salinannya jadi berbeda dari
-        yang lain dan langsung ketahuan. Untuk menipu, seseorang harus mengubah
-        mayoritas komputer sekaligus &mdash; nyaris mustahil.
-      </p>
+      <div className="intro">
+        <p>
+          Di dunia nyata, blockchain tidak disimpan di satu komputer, melainkan
+          disalin ke banyak komputer sekaligus &mdash; tiap komputer disebut{' '}
+          <b>peer</b>. Setiap peer menyimpan salinan rantai yang sama persis, dan
+          selama semua salinan cocok (semuanya hijau), jaringan sepakat bahwa
+          itulah catatan yang benar.
+        </p>
+        <p>
+          Kalau seseorang mengubah Data di satu peer, hanya rantai di peer itu
+          yang berubah dan langsung berbeda dari peer lain, sehingga
+          kecurangannya ketahuan. Untuk benar-benar memalsukan catatan, seseorang
+          harus meng-<b>Mine</b> ulang dan mengubah mayoritas peer secara
+          bersamaan &mdash; dan itu praktis mustahil.
+        </p>
+      </div>
 
       <div className="peers">
         {chains.map((chain, peer) => {

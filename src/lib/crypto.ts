@@ -1,7 +1,7 @@
 import { sha256 } from 'js-sha256'
 
-/** Kesulitan proof-of-work: hash harus diawali sejumlah "0" ini. */
-export const DIFFICULTY_PREFIX = '0000'
+/** Kesulitan proof-of-work: hash harus diawali sejumlah "0" ini (tiga nol). */
+export const DIFFICULTY_PREFIX = '000'
 
 /** Hash SHA256 dari sebuah string, dikembalikan sebagai hex. */
 export function hash(input: string): string {

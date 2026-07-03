@@ -26,13 +26,23 @@ export default function BlockchainPage() {
       <h1>
         <span className="grad">Rantai</span> Blok
       </h1>
-      <p className="intro">
-        Tiap blok ikut menyimpan kode unik blok sebelumnya (kolom <b>Prev</b>),
-        seperti mata rantai yang saling mengait. Kalau seseorang diam-diam
-        mengubah isi satu blok, kodenya berubah dan sambungan ke blok-blok
-        berikutnya langsung putus &mdash; semuanya jadi merah. Jadi memalsukan
-        satu blok berarti harus mengerjakan ulang semua blok sesudahnya.
-      </p>
+      <div className="intro">
+        <p>
+          Blockchain hanyalah banyak block yang disusun berurutan. Selain{' '}
+          <b>Nonce</b> dan <b>Data</b>, kini tiap block juga menyimpan{' '}
+          <b>Prev</b> &mdash; yaitu kode hash milik block sebelumnya. Karena hash
+          sebuah block ikut dihitung dari Prev-nya, semua block jadi saling
+          terkunci seperti rantai.
+        </p>
+        <p>
+          Akibatnya, kalau kamu mengubah Data di satu block, hash-nya berubah,
+          Prev di block berikutnya jadi tidak cocok, dan block itu beserta semua
+          block sesudahnya langsung dianggap <b>tidak valid</b> (merah). Untuk
+          memperbaikinya, setiap block yang rusak harus di-<b>Mine</b> ulang satu
+          per satu &mdash; itulah yang membuat catatan lama nyaris mustahil
+          diubah diam-diam.
+        </p>
+      </div>
 
       <div className="chain">
         {blocks.map((b, i) => (
