@@ -23,7 +23,7 @@ export default function BlockPage() {
     <div className="page">
       <span className="eyebrow">Menyegel Sebuah Blok</span>
       <h1>
-        Bagian dari <span className="grad">Blok</span>
+        Sebuah <span className="grad">Block</span>
       </h1>
       <p className="intro">
         Sebuah blok baru dianggap sah kalau kode uniknya kebetulan diawali

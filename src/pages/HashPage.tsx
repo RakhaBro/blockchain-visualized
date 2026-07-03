@@ -12,11 +12,10 @@ export default function HashPage() {
         <span className="grad">Hash</span>: Kode Unik
       </h1>
       <p className="intro">
-        Bayangkan mesin yang mengubah tulisan apa pun &mdash; sepatah kata
-        sampai satu buku &mdash; menjadi satu kode acak sepanjang tetap, semacam
-        "sidik jari" digital (orang sering menyebutnya proses enkripsi). Ganti
-        satu huruf saja, kodenya langsung berubah total. Tapi teks yang sama
-        selalu memberi kode yang sama. Coba ketik di bawah.
+        Hash adalah metode enkripsi yang mengubah data apa pun menjadi sebuah
+        kode acak dengan jumlah karakter yang selalu tetap. Ganti satu huruf
+        saja, kodenya langsung berubah total &mdash; tapi data yang sama selalu
+        menghasilkan kode yang sama. Coba ketik di bawah.
       </p>
 
       <div className="card">
