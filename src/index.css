@@ -1,0 +1,666 @@
+/* =========================================================
+   Blockchain Visualized — Web3 dark theme
+   ========================================================= */
+:root {
+  /* base */
+  --bg-0: #05070f;
+  --bg-1: #0a0f1e;
+  --panel: rgba(18, 26, 46, 0.72);
+  --panel-2: rgba(24, 33, 58, 0.6);
+  /* warna block solid (= --panel dikomposit di atas --bg-1) agar opaque */
+  --block-bg: #10172a;
+  --border: rgba(120, 145, 210, 0.18);
+  --border-strong: rgba(130, 160, 230, 0.38);
+  --text: #e6ecfb;
+  --muted: #8b98bd;
+  --faint: #5d6a8f;
+
+  /* accents */
+  --cyan: #22d3ee;
+  --violet: #a78bfa;
+  --blue: #4f8bff;
+  --green: #34d399;
+  --green-2: #10b981;
+  --red: #fb7185;
+  --red-2: #f43f5e;
+
+  --grad-brand: linear-gradient(120deg, #22d3ee 0%, #6366f1 50%, #a855f7 100%);
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', 'SF Mono',
+    'Consolas', monospace;
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  color: var(--text);
+  background: var(--bg-0);
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* animated ambient background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(60rem 60rem at 15% -10%, rgba(80, 90, 255, 0.16), transparent 60%),
+    radial-gradient(50rem 50rem at 110% 10%, rgba(168, 85, 247, 0.16), transparent 55%),
+    radial-gradient(60rem 40rem at 50% 120%, rgba(34, 211, 238, 0.12), transparent 60%),
+    linear-gradient(180deg, var(--bg-1), var(--bg-0));
+}
+
+/* subtle moving grid */
+body::after {
+  content: '';
+  position: fixed;
+  inset: -50%;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(120, 150, 230, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120, 150, 230, 0.05) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: radial-gradient(circle at 50% 40%, #000 0%, transparent 70%);
+  animation: grid-drift 40s linear infinite;
+  pointer-events: none;
+}
+@keyframes grid-drift {
+  from { transform: translateY(0); }
+  to { transform: translateY(46px); }
+}
+
+/* =========================================================
+   Navbar
+   ========================================================= */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0.55rem 1.4rem;
+  flex-wrap: wrap;
+  background: rgba(8, 12, 24, 0.72);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+.navbar .brand {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-size: 1.05rem;
+  padding: 0.5rem 1.4rem 0.5rem 0;
+  text-decoration: none;
+  color: #fff;
+  white-space: nowrap;
+}
+.brand .logo {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: var(--grad-brand);
+  box-shadow: 0 0 18px rgba(99, 102, 241, 0.7);
+  transform: rotate(45deg);
+  position: relative;
+}
+.brand .logo::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border-radius: 3px;
+  background: var(--bg-0);
+}
+.brand .brand-text {
+  background: var(--grad-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.navbar a.nav-link {
+  position: relative;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 0.55rem 0.9rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: color 0.2s, background 0.2s;
+}
+.navbar a.nav-link:hover {
+  color: #fff;
+  background: rgba(120, 150, 230, 0.08);
+}
+.navbar a.nav-link.active {
+  color: #fff;
+  background: rgba(120, 150, 230, 0.1);
+}
+.navbar a.nav-link.active::after {
+  content: '';
+  position: absolute;
+  left: 0.9rem;
+  right: 0.9rem;
+  bottom: 2px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--grad-brand);
+  box-shadow: 0 0 10px var(--cyan);
+}
+
+/* =========================================================
+   Page shell
+   ========================================================= */
+.page {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 2.4rem 1.25rem 5rem;
+  animation: fade-up 0.5s ease both;
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.page .eyebrow {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  border: 1px solid var(--border);
+  background: rgba(34, 211, 238, 0.06);
+  padding: 0.32rem 0.7rem;
+  border-radius: 999px;
+  margin: 0 auto 1rem;
+}
+.page .eyebrow::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 10px var(--cyan);
+}
+.page h1 {
+  font-size: 2.1rem;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin: 0 0 0.75rem;
+  font-weight: 800;
+  text-align: center;
+}
+.page h1 .grad {
+  background: var(--grad-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.page .intro {
+  color: var(--muted);
+  max-width: 760px;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+/* Header penjelasan di tiap halaman dibuat rata tengah (teks di dalam card tetap rata kiri) */
+.page > .intro {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.page .intro code,
+.intro code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  color: var(--cyan);
+  background: rgba(34, 211, 238, 0.1);
+  padding: 0.1em 0.4em;
+  border-radius: 5px;
+}
+.page .intro b {
+  color: var(--text);
+}
+
+/* =========================================================
+   Block / card
+   ========================================================= */
+.card,
+.block {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  margin: 0 auto 1.5rem;
+  /* background-color opaque menutup wire di belakang block;
+     --panel dijadikan layer gradient agar tint-nya tetap sama seperti semula */
+  background-color: var(--block-bg);
+  background-image:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0)),
+    linear-gradient(var(--panel), var(--panel));
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.35rem 1.4rem;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.05) inset,
+    0 18px 40px -20px rgba(0, 0, 0, 0.8);
+  transition: box-shadow 0.25s ease, border-color 0.25s;
+}
+.card:hover,
+.block:hover {
+  border-color: var(--border-strong);
+}
+
+/* colored edge strip on top */
+.card::before,
+.block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 18px;
+  right: 18px;
+  height: 3px;
+  border-radius: 0 0 4px 4px;
+  background: var(--grad-brand);
+  opacity: 0.7;
+}
+
+.card.valid,
+.block.valid {
+  border-color: rgba(52, 211, 153, 0.5);
+  box-shadow:
+    0 0 0 1px rgba(52, 211, 153, 0.25),
+    0 0 40px -8px rgba(16, 185, 129, 0.4),
+    0 18px 40px -20px rgba(0, 0, 0, 0.8);
+}
+.card.valid::before,
+.block.valid::before {
+  background: linear-gradient(90deg, var(--green-2), var(--green));
+  opacity: 1;
+}
+.card.invalid,
+.block.invalid {
+  border-color: rgba(251, 113, 133, 0.5);
+  box-shadow:
+    0 0 0 1px rgba(251, 113, 133, 0.22),
+    0 0 40px -10px rgba(244, 63, 94, 0.38),
+    0 18px 40px -20px rgba(0, 0, 0, 0.8);
+}
+.card.invalid::before,
+.block.invalid::before {
+  background: linear-gradient(90deg, var(--red-2), var(--red));
+  opacity: 1;
+}
+
+/* block header: badge + status */
+.block__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0.1rem 0 1.1rem;
+}
+.block__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  color: var(--text);
+}
+.block__badge .cube {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: var(--grad-brand);
+  transform: rotate(45deg);
+  box-shadow: 0 0 14px rgba(99, 102, 241, 0.6);
+}
+.block__badge .n {
+  color: var(--violet);
+}
+.block__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+}
+.block__status .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.block__status.ok {
+  color: var(--green);
+  border-color: rgba(52, 211, 153, 0.4);
+  background: rgba(52, 211, 153, 0.1);
+}
+.block__status.ok .dot {
+  background: var(--green);
+  box-shadow: 0 0 10px var(--green);
+}
+.block__status.bad {
+  color: var(--red);
+  border-color: rgba(251, 113, 133, 0.4);
+  background: rgba(251, 113, 133, 0.1);
+}
+.block__status.bad .dot {
+  background: var(--red);
+  box-shadow: 0 0 10px var(--red);
+  animation: pulse 1.4s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+/* =========================================================
+   Fields & inputs
+   ========================================================= */
+.field {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+.field > label {
+  flex: 0 0 84px;
+  text-align: right;
+  color: var(--faint);
+  font-weight: 600;
+  padding-top: 0.62rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-family: var(--font-mono);
+}
+.field .control {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+input.text,
+textarea.text {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.6rem 0.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  background: rgba(6, 10, 20, 0.6);
+  color: var(--text);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+input.text::placeholder,
+textarea.text::placeholder {
+  color: var(--faint);
+}
+input.mono,
+textarea.mono {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.01em;
+  word-break: break-all;
+  color: #b9e8ff;
+}
+textarea.text {
+  resize: vertical;
+  min-height: 3rem;
+}
+input.text:focus,
+textarea.text:focus {
+  outline: none;
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.15);
+}
+input.short {
+  max-width: 150px;
+}
+/* readonly hash gets a glow inside valid/invalid blocks */
+.block.valid input.mono,
+.card.valid input.mono {
+  color: #9ff5cf;
+}
+.block.invalid input.mono,
+.card.invalid input.mono {
+  color: #ffb3c1;
+}
+
+/* =========================================================
+   Buttons
+   ========================================================= */
+button.mine {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0.62rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  color: #fff;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
+  background: linear-gradient(120deg, #2563eb, #7c3aed);
+  box-shadow: 0 8px 22px -10px rgba(124, 58, 237, 0.9);
+  overflow: hidden;
+  transition: transform 0.15s, box-shadow 0.2s, filter 0.2s;
+}
+button.mine::before {
+  content: '⛏';
+  font-size: 0.95em;
+}
+button.mine:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.12);
+  box-shadow: 0 12px 26px -10px rgba(124, 58, 237, 1);
+}
+button.mine:active {
+  transform: translateY(0);
+}
+button.mine.secondary {
+  background: rgba(120, 150, 230, 0.08);
+  border-color: var(--border-strong);
+  color: var(--text);
+  box-shadow: none;
+}
+button.mine.secondary::before {
+  content: '';
+}
+button.mine.secondary:hover {
+  background: rgba(120, 150, 230, 0.16);
+}
+
+/* =========================================================
+   Chain connector between blocks
+   ========================================================= */
+.chain {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.chain > .block {
+  width: 100%;
+  margin-bottom: 0; /* jarak antar block diatur oleh konektor */
+}
+/* konektor mengisi celah antar block; diletakkan DI BELAKANG block (z-index 0) */
+.chain-link {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  height: 4.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.chain-link::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -18px; /* menembus sedikit ke block atas */
+  bottom: -18px; /* menembus sedikit ke block bawah */
+  width: 3px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, var(--cyan), var(--violet));
+  background-size: 100% 200%;
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.7);
+  animation: flow 1.8s linear infinite;
+}
+@keyframes flow {
+  from { background-position: 0 0; }
+  to { background-position: 0 -200%; }
+}
+.chain-link .glyph {
+  position: relative;
+  align-self: center;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 0.9rem;
+  color: #cfe3ff;
+  background: var(--bg-1);
+  border: 1px solid var(--border-strong);
+  box-shadow: 0 0 14px rgba(79, 139, 255, 0.5);
+}
+
+/* =========================================================
+   Peers (distributed)
+   ========================================================= */
+.peers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  gap: 1.75rem;
+}
+.peer {
+  background: rgba(10, 15, 28, 0.5);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 1.1rem 1.1rem 1.4rem;
+}
+.peer h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+  margin: 0.2rem 0 1.1rem;
+  color: var(--text);
+}
+.peer h2::before {
+  content: '◉';
+  color: var(--cyan);
+  text-shadow: 0 0 10px var(--cyan);
+}
+.peer .block {
+  padding: 1rem;
+  margin-bottom: 0;
+}
+.peer .field > label {
+  flex-basis: 54px;
+}
+.peer .chain-link {
+  height: 3rem;
+}
+
+/* =========================================================
+   Transactions (tokens)
+   ========================================================= */
+.tx {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.6rem 0.7rem;
+  margin-bottom: 0.55rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.85rem;
+  align-items: center;
+  font-size: 0.9rem;
+  background: rgba(6, 10, 20, 0.4);
+}
+.tx .amt {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--green);
+}
+.tx .arrow {
+  color: var(--faint);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* =========================================================
+   Misc / status text
+   ========================================================= */
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 0.4rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+.section-title .idx {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--cyan);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.1rem 0.45rem;
+}
+.status {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+.status.ok {
+  color: var(--green);
+  text-shadow: 0 0 12px rgba(52, 211, 153, 0.5);
+}
+.status.bad {
+  color: var(--red);
+  text-shadow: 0 0 12px rgba(251, 113, 133, 0.5);
+}
+
+@media (max-width: 560px) {
+  .page h1 { font-size: 1.6rem; }
+  .field { flex-direction: column; gap: 0.3rem; }
+  .field > label { text-align: left; flex-basis: auto; padding-top: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::after,
+  .chain-link::before,
+  .block__status.bad .dot { animation: none; }
+}
